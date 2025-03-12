@@ -1,9 +1,11 @@
 using Microsoft.Extensions.Configuration;
+using Carter;
+using MediatR;
+using Marten;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// add sevices to the container
-
+// Add services to the container
 var assembly = typeof(Program).Assembly;
 builder.Services.AddMediatR(config =>
 {
@@ -11,15 +13,17 @@ builder.Services.AddMediatR(config =>
     //config.AddOpenBehavior(typeof(ValidationBehavior<,>));
     //config.AddOpenBehavior(typeof(LoggingBehavior<,>));
 });
+
 builder.Services.AddCarter();
+
 builder.Services.AddMarten(opts =>
 {
-    opts.Connection(builder.
-    Configuration.GetConnectionString("CatalogConnection")!);
-}).UseLightweightSessions(); 
+    opts.Connection(builder.Configuration.GetConnectionString("CatalogConnection")!);
+}).UseLightweightSessions();
 
 var app = builder.Build();
 
-// configure the Http request pipline.
+// Configure the HTTP request pipeline
+app.MapCarter(); // THIS LINE IS MISSING IN YOUR ORIGINAL CODE
 
 app.Run();
