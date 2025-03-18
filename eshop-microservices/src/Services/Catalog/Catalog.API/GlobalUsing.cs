@@ -16,7 +16,10 @@
 //using Catalog.API.Models;
 //using Marten;
 
-global using Carter;
-global using Marten;
+global using Carter; // for route in minmal api 
+global using Marten; // for document store postgres
 global using BuildingBlocks.CQRS;
 global using Catalog.API.Models;
+global using MediatR;
+global using Mapster;  // for mapping
+global using Catalog.API.Exceptions;           
