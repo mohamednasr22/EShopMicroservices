@@ -1,4 +1,5 @@
-﻿using FluentValidation;
+﻿
+using FluentValidation;
 
 namespace Catalog.API.Products.CreateProduct;
 
@@ -19,15 +20,27 @@ public class CreateProductCommandValidator : AbstractValidator<CreateProductComm
 }
 
 internal class CreateProductCommandHandler
-    (IDocumentSession session)
+    (IDocumentSession session 
+    //, IValidator<CreateProductCommand> validator
+    , ILogger<CreateProductCommandHandler> logger )
     : ICommandHandler<CreateProductCommand, CreateProductResult>
 {
     public async Task<CreateProductResult> Handle(CreateProductCommand command, CancellationToken cancellationToken)
     {
         //create Product entity from command object
         //save to database
-        //return CreateProductResult result               
+        //return CreateProductResult result
+        //
 
+
+        //var result = await validator.ValidateAsync(command, cancellationToken);
+        //var errors = result.Errors.Select(x => x.ErrorMessage).ToList();
+        //if (errors.Any())
+        //{
+        //    throw new ValidationException(errors.FirstOrDefault());
+        //}
+
+        logger.LogInformation("Creating Product with name: {Name}", command.Name);
         var product = new Product
         {
             Name = command.Name,
@@ -36,6 +49,8 @@ internal class CreateProductCommandHandler
             ImageFile = command.ImageFile,
             Price = command.Price
         };
+
+
 
         //save to database
         session.Store(product);
