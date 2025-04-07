@@ -22,7 +22,8 @@ public class CreateProductCommandValidator : AbstractValidator<CreateProductComm
 internal class CreateProductCommandHandler
     (IDocumentSession session 
     //, IValidator<CreateProductCommand> validator
-    , ILogger<CreateProductCommandHandler> logger )
+    //, ILogger<CreateProductCommandHandler> logger
+    )
     : ICommandHandler<CreateProductCommand, CreateProductResult>
 {
     public async Task<CreateProductResult> Handle(CreateProductCommand command, CancellationToken cancellationToken)
@@ -40,7 +41,7 @@ internal class CreateProductCommandHandler
         //    throw new ValidationException(errors.FirstOrDefault());
         //}
 
-        logger.LogInformation("Creating Product with name: {Name}", command.Name);
+        //logger.LogInformation("Creating Product with name: {Name}", command.Name);
         var product = new Product
         {
             Name = command.Name,

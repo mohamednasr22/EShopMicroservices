@@ -23,3 +23,7 @@ global using MediatR;
 global using Mapster;  // for mapping
 global using Catalog.API.Exceptions;
 global using FluentValidation;
+
+
+global using BuildingBlocks.Behaviors;
+global using BuildingBlocks.Exceptions.Handler;
