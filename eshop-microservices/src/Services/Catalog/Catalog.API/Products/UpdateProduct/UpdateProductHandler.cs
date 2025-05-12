@@ -32,7 +32,7 @@ internal class UpdateProductCommandHandler
 
         if (product is null)
         {
-            throw new ProductNotFoundException();
+            throw new ProductNotFoundException(product.Id);
         }
 
         product.Name = command.Name;
