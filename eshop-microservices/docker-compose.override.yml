@@ -81,6 +81,7 @@ services:
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
+
   orderdb:
     container_name: orderdb
     environment:
@@ -88,7 +89,7 @@ services:
       - SA_PASSWORD=SwN12345678
     restart: always
     ports:
-      - "1433:1433"
+      - "21433:1433"  # Host:Container
   
 
   
