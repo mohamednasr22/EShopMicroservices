@@ -47,6 +47,7 @@ services:
       context: src
       dockerfile: ApiGateways/YarpApiGateway/Dockerfile
 
+
 volumes:
   postgres_catalog:
   postgres_basket:
